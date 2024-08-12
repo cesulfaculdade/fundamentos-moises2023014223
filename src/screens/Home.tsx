@@ -1,4 +1,5 @@
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native"
+import { Product } from "../components/Product";
 
 export function Home() {
 
@@ -27,9 +28,10 @@ export function Home() {
 
             </View>
             <Text style={styles.listTitle} >Compras Pendentes</Text>
-            <View style={styles.list}>
+            <Product/>
+            {/* <View style={styles.list}>
                 <Text style={styles.emptyText}>Comprou todos os produtos? Adicione produtos a sua lista de compras</Text>
-            </View>
+            </View> */}
         </View>
     )
 }
@@ -90,7 +92,8 @@ const styles = StyleSheet.create({
     listTitle: {
         fontSize: 20,
         fontWeight: "bold",
-        marginTop: 36
+        marginTop: 36,
+        marginBottom: 16
     },
     emptyText: {
         fontSize: 16,
@@ -98,7 +101,7 @@ const styles = StyleSheet.create({
         textAlign: "center",
         alignSelf: "center"
     },
-    list:{
+    list: {
         justifyContent: "center",
         alignContent: "center",
         flex: 1

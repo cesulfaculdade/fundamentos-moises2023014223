@@ -1,45 +1,21 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {  Text, TouchableOpacity, View } from "react-native";
+import { styles } from "./styles";
 
-export function Product() {
+type Props = {
+    name: string;
+    onRemove: ()=>void;
+}
+export function Product({name,onRemove}: Props) {
     return (
         <View style={styles.container}>
 
             <Text style={styles.name}>
-                Carne
+                {name}
             </Text>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity style={styles.button} onPress={onRemove}>
                 <Text style={styles.textButton}>-</Text>
             </TouchableOpacity>
         </View>
     )
 }
 
-const styles = StyleSheet.create({
-    container: {
-        backgroundColor: "#fff",
-        borderRadius: 5,
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "center"
-    },
-    name: {
-        flex: 1,
-        fontSize: 16,
-        marginLeft: 16
-    },
-    button: {
-        width: 56,
-        height: 56,
-        backgroundColor: "#E23C44",
-        borderTopRightRadius: 5,
-        borderBottomRightRadius: 5
-    },
-    textButton:{
-        fontSize: 30,
-        color: "#fff",
-        margin: "auto"
-    }
-
-});
-
-styles

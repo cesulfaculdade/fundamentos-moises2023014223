@@ -1,58 +1,34 @@
+import { useState } from "react";
 import { Alert, FlatList, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native"
 import { Product } from "../components/Product";
 
 
 export function Home() {
-    const products = [
-        "Arroz",
-        "Feijão",
-        "Macarrão",
-        "Farinha de Trigo",
-        "Açúcar",
-        "Sal",
-        "Óleo de Soja",
-        "Leite",
-        "Ovos",
-        "Pão",
-        "Café",
-        "Chá",
-        "Manteiga",
-        "Queijo",
-        "Presunto",
-        "Frango",
-        "Carne Bovina",
-        "Peixe",
-        "Frutas",
-        "Legumes",
-        "Verduras",
-        "Batata",
-        "Cebola",
-        "Alho",
-        "Tomate",
-        "Cenoura",
-        "Banana",
-        "Maçã",
-        "Laranja",
-        "Uva",
-        "Refrigerante",
-        "Suco",
-        "Água Mineral",
-        "Biscoitos",
-        "Cereais",
-        "Molho de Tomate",
-        "Condimentos",
-        "Iogurte",
-        "Sorvete",
-        "Chocolate"
-    ];
+    const [products,setProducts] = useState<string[]>([
+    
+    ]);
+    const [productName,setProductName] = useState("");
     function handleProductAdd() {
-        if(products.includes('Arroz')){
-          Alert.alert("Produto já cadastrado","Já existe um produto na lista com este nome")  
+        if(products.includes(productName)){
+          return Alert.alert("Produto já cadastrado","Já existe um produto na lista com este nome")  
         }
+        setProducts((prevState)=>[...prevState,productName]);
+        setProductName('');
         
     }
     function handleProductRemove(name: string) {
-        console.log(`Removendo ${name} `)
+        Alert.alert("Remover",`Deseja remover o produto ${name}`,[{
+            text:"Sim",
+            onPress: ()=>{
+                Alert.alert("delete");
+            }
+        },
+        {
+            text: "Não",
+            style:"cancel"
+        }
+    
+    ])
     }
     return (
         <View style={styles.container}>
@@ -64,6 +40,8 @@ export function Home() {
                     placeholder="Nome do Produto"
                     placeholderTextColor='#BDBABA'
                     keyboardType="default"
+                    onChangeText={setProductName}
+                    value={productName}
                 />
 
                 <TouchableOpacity
@@ -89,6 +67,7 @@ export function Home() {
                     Comprou todos os produtos? Adicione produtos a sua lista de compras
                     </Text>)
                     }
+                
             />
             {/* <View style={styles.list}>
                 <Text style={styles.emptyText}>

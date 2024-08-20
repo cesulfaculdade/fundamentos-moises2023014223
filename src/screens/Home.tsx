@@ -20,7 +20,8 @@ export function Home() {
         Alert.alert("Remover",`Deseja remover o produto ${name}`,[{
             text:"Sim",
             onPress: ()=>{
-                Alert.alert("delete");
+                setProducts((prevState)=>prevState.filter(product => product != name));
+                
             }
         },
         {
